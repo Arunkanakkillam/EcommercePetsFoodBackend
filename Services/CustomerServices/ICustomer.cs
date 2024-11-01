@@ -7,6 +7,9 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices
     {
         Task<string>CustomerRegister(CustomerRegisterDto customers);
         Task<LoginDto>CustomerLogin(CustomerLogin customers);
+        Task<List<AdminRegDto>> GetCustomers();
+        Task<AdminRegDto> GetCustomersById(int id);
+        Task <bool> BlockCustomer(string email);
 
     }
 }

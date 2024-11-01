@@ -3,6 +3,7 @@ using EcommercePetsFoodBackend.Db_Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcommercePetsFoodBackend.Migrations
 {
     [DbContext(typeof(EcomContext))]
-    partial class EcomContextModelSnapshot : ModelSnapshot
+    [Migration("20241101095050_admin hardcode")]
+    partial class adminhardcode
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +65,7 @@ namespace EcommercePetsFoodBackend.Migrations
                             Email = "admin@example.com",
                             IsBlocked = false,
                             Name = "Admin User",
-                            Password = "$2a$11$WQFadKt0BxZuRQNLN.3HeeT509zJv7sdhIumUMWC3CS7WjYRtq2FC",
+                            Password = "$2a$11$nZotRaLko3rwi3mr6LKRVOMecSh4G9WFbei3AVft8SVtnDyTVFDla",
                             Phone = 0L,
                             Role = "admin"
                         });

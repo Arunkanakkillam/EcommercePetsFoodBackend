@@ -1,6 +1,7 @@
 ﻿using EcommercePetsFoodBackend.Data.Dto;
 using EcommercePetsFoodBackend.Data.Models;
 using EcommercePetsFoodBackend.Services.CustomerServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -55,6 +56,53 @@ namespace EcommercePetsFoodBackend.Controllers
             catch(Exception ex) 
             {
                 return StatusCode (500,ex.Message);
+            }
+        }
+
+
+        [HttpGet("customers")]
+        [Authorize(Roles ="admin")]
+        public async Task<IActionResult> GetCustomers()
+        {
+            try
+            {
+                var existingCustomer = await _customer.GetCustomers();
+                return Ok(existingCustomer);
+            }
+            catch(Exception ex) 
+            {
+                return StatusCode(500,ex.Message);
+            }
+        }
+
+        [HttpGet("CustomersById")]
+        [Authorize(Roles = "admin")]
+        public async Task<ActionResult> GetCustomersById([FromBody] int id)
+        {
+            try
+            {
+                var existingCustomer = await _customer.GetCustomersById(id);
+                return Ok(existingCustomer);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+        [HttpPut("block user")]
+        [Authorize(Roles = "admin")]    
+        public async Task<ActionResult> BlockCustomer([FromBody] string email)
+        {
+            try
+            {
+                var done=await _customer.BlockCustomer(email);
+                return Ok(done);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message); 
             }
         }
 

@@ -17,6 +17,48 @@
   },
   {
     "ContainingType": "EcommercePetsFoodBackend.Controllers.CustomerController",
+    "Method": "BlockCustomer",
+    "RelativePath": "api/Customer/block user",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.CustomerController",
+    "Method": "GetCustomers",
+    "RelativePath": "api/Customer/customers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.CustomerController",
+    "Method": "GetCustomersById",
+    "RelativePath": "api/Customer/CustomersById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.CustomerController",
     "Method": "CustomerLogin",
     "RelativePath": "api/Customer/Login",
     "HttpMethod": "POST",
