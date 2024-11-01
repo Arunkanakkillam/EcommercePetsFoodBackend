@@ -1,4 +1,13 @@
 
+using EcommercePetsFoodBackend.Db_Context;
+using EcommercePetsFoodBackend.Mapper;
+using EcommercePetsFoodBackend.Services.CustomerServices;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
+
 namespace EcommercePetsFoodBackend
 {
     public class Program
@@ -10,6 +19,64 @@ namespace EcommercePetsFoodBackend
             // Add services to the container.
 
             builder.Services.AddControllers();
+            var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+            var key = jwtSettings["Key"];
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtSettings["Issuer"],
+                    ValidAudience = jwtSettings["Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+                };
+            });
+
+            builder.Services.AddAuthorization();
+
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "EcommercePetsFoodBackend", Version = "v1" });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+            });
+
+
+            builder.Services.AddAutoMapper(typeof(MappPets));
+            builder.Services.AddScoped<ICustomer, Customer>();
+            builder.Services.AddDbContext<EcomContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("EcommerceConctn")));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -25,8 +92,9 @@ namespace EcommercePetsFoodBackend
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseDeveloperExceptionPage();
 
+            app.UseAuthorization();
 
             app.MapControllers();
 

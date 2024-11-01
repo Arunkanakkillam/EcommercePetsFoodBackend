@@ -1,0 +1,34 @@
+[
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.CustomerController",
+    "Method": "CustomerRegister",
+    "RelativePath": "api/Customer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerRegisterDto",
+        "Type": "EcommercePetsFoodBackend.Data.Dto.CustomerRegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.CustomerController",
+    "Method": "CustomerLogin",
+    "RelativePath": "api/Customer/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "EcommercePetsFoodBackend.Data.Models.CustomerLogin",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

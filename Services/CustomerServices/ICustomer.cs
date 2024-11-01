@@ -1,11 +1,12 @@
-﻿using EcommercePetsFoodBackend.Data.Models;
+﻿using EcommercePetsFoodBackend.Data.Dto;
+using EcommercePetsFoodBackend.Data.Models;
 
 namespace EcommercePetsFoodBackend.Services.CustomerServices
 {
     public interface ICustomer
     {
-        Task<string>CustomerRegister(Customers customers);
-        Task<Customers>CustomerLogin(Customers customers);
+        Task<string>CustomerRegister(CustomerRegisterDto customers);
+        Task<LoginDto>CustomerLogin(CustomerLogin customers);
 
     }
 }

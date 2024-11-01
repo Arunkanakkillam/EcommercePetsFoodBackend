@@ -10,6 +10,8 @@ namespace EcommercePetsFoodBackend.Data.Dto
         [EmailAddress]
         public string Email { get; set; }
 
+        public long Phone { get; set; }
+        
         [MinLength(5)]
         public string Password { get; set; }
 
