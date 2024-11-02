@@ -10,6 +10,7 @@ D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\bin\Debug\net8.0\Azu
 D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\bin\Debug\net8.0\Azure.Identity.dll
 D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\bin\Debug\net8.0\BCrypt.Net-Next.dll
 D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\bin\Debug\net8.0\Humanizer.dll
+D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -143,4 +144,3 @@ D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\obj\Debug\net8.0\ref
 D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\obj\Debug\net8.0\EcommercePetsFoodBackend.pdb
 D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\obj\Debug\net8.0\EcommercePetsFoodBackend.genruntimeconfig.cache
 D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\obj\Debug\net8.0\ref\EcommercePetsFoodBackend.dll
-D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

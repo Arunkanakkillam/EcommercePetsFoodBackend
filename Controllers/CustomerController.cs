@@ -62,7 +62,7 @@ namespace EcommercePetsFoodBackend.Controllers
 
         [HttpGet("customers")]
         [Authorize(Roles ="admin")]
-        public async Task<IActionResult> GetCustomers()
+        public async Task<ActionResult<IEnumerable<AdminRegDto>>> GetCustomers()
         {
             try
             {
@@ -75,9 +75,9 @@ namespace EcommercePetsFoodBackend.Controllers
             }
         }
 
-        [HttpGet("CustomersById")]
+        [HttpGet("CustomersById/{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<ActionResult> GetCustomersById([FromBody] int id)
+        public async Task<ActionResult> GetCustomersById(int id)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace EcommercePetsFoodBackend.Controllers
 
         }
 
-        [HttpPut("block user")]
+        [HttpPut("block-Customer")]
         [Authorize(Roles = "admin")]    
         public async Task<ActionResult> BlockCustomer([FromBody] string email)
         {

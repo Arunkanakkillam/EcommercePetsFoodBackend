@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using EcommercePetsFoodBackend.Data.Dto;
-using EcommercePetsFoodBackend.Data.Models;
+using EcommercePetsFoodBackend.Data.Models.Customer;
 
 namespace EcommercePetsFoodBackend.Mapper
 {

@@ -3,6 +3,7 @@ using AutoMapper;
 using BCrypt.Net;
 using EcommercePetsFoodBackend.Data.Dto;
 using EcommercePetsFoodBackend.Data.Models;
+using EcommercePetsFoodBackend.Data.Models.Customer;
 using EcommercePetsFoodBackend.Db_Context;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -88,13 +89,13 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices
             return new LoginDto { Error = "oopss!" };
         }
 
-        public async Task<List<AdminRegDto>> GetCustomers()
+        public async Task<IEnumerable<AdminRegDto>> GetCustomers()
         {
             try
             {
 
                 var customer = await _context.Customers.ToListAsync();
-                var map = _mapper.Map<List<AdminRegDto>>(customer);
+                var map = _mapper.Map<IEnumerable<AdminRegDto>>(customer);
                 return map;
             }
             catch (Exception ex)
@@ -122,7 +123,7 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices
         {
             try
             {
-                var customer = await _context.Customers.FromSqlRaw("select Id,Name,Email,Role from Customers", new SqlParameter("@Id", id))
+                var customer = await _context.Customers.FromSqlRaw("select * from Customers where Id=@Id ", new SqlParameter("@Id", id))
                    .FirstOrDefaultAsync();
                 if (customer != null)
                 {
