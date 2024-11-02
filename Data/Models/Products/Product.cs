@@ -7,11 +7,13 @@ namespace EcommercePetsFoodBackend.Data.Models.Products
         public int ProductId { get; set; }
         [Required]
         public string ProductName { get; set; }
+        [Required]
+        public bool IsAvailable { get; set; }
         public string ProductDescription { get; set; }
         [Required]
         public int ProductCategoryId { get; set; }
         [Required]
-        public string Price { get; set; }
+        public decimal Price { get; set; }
         [Required]
         public string Image { get; set; }
         [Required]
