@@ -2,6 +2,7 @@
 using EcommercePetsFoodBackend.Db_Context;
 using EcommercePetsFoodBackend.Mapper;
 using EcommercePetsFoodBackend.Services.CustomerServices;
+using EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -75,6 +76,7 @@ namespace EcommercePetsFoodBackend
 
             builder.Services.AddAutoMapper(typeof(MappPets));
             builder.Services.AddScoped<ICustomer, Customer>();
+            builder.Services.AddScoped<IProductServices, ProductService>();
             builder.Services.AddDbContext<EcomContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("EcommerceConctn")));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

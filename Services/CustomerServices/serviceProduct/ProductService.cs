@@ -11,9 +11,10 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
         private readonly EcomContext _context;
         private readonly IMapper _mapper;
 
-        public ProductService(EcomContext context)
+        public ProductService(EcomContext context, IMapper mapper)
         {
             _context = context;
+            _mapper=mapper;
         }
 
        
@@ -35,9 +36,34 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
             }
         }
 
-
-
-
+        public async Task<ProductDto> AddProduct(ProductDto product)
+        {
+            try
+            {
+                var data = _mapper.Map<Product>(product);
+                await _context.Products.AddAsync(data);
+                await _context.SaveChangesAsync();
+                return _mapper.Map<ProductDto>(data);
+            }
+            catch (Exception ex)
+            {
+                var innerMessage = ex.InnerException?.Message ?? ex.Message;
+                throw new Exception($"Database update error: {innerMessage}");
+            }
+        }
+        public async Task<bool> AddNewCategory(string category)
+        {
+            try
+            {
+                var data=await _context.Categories.AddAsync(new Category { CategoryName=category});
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch(Exception ex) 
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
 
     }

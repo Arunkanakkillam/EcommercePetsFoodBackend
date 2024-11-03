@@ -82,5 +82,37 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.ProductController",
+    "Method": "AddCategory",
+    "RelativePath": "api/Product/addingCategory",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.ProductController",
+    "Method": "AddProduct",
+    "RelativePath": "api/Product/AddProduct",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "product",
+        "Type": "EcommercePetsFoodBackend.Data.Dto.ProductDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
