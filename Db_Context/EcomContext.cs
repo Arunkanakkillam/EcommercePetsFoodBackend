@@ -34,7 +34,7 @@ namespace EcommercePetsFoodBackend.Db_Context
                     .HasOne(p => p.Category)
                     .WithMany(p => p.Products)
                     .HasForeignKey(p => p.ProductCategoryId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Product>()
                 .Property(p => p.Price)
                 .HasColumnType("decimal(18,2)");

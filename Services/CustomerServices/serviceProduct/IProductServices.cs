@@ -6,13 +6,13 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
     public interface IProductServices
     {
         Task<IEnumerable<ProductDto>> GetAllProducts();
-        //Task<Product> GetProductById(int id);
-        //Task<Product> GetProductByCategoryId(int id);
+        Task<Product> GetProductById(int id);
+        Task<IEnumerable<Product>> GetProductByCategoryId(int id);
         Task<ProductDto> AddProduct(ProductDto product);
-        //Task<Product> UpdateProduct(Product product); 
-        //Task<Product> DeleteProduct(int id);
+        Task<bool> UpdateProduct(int id, ProductDto product);
+        Task <bool> DeleteProduct(int id);
         Task<bool> AddNewCategory(string category);
-        //Task<Product>DeleteCategory(int categoryId);
-        //Task<Product> SearchProduct(string SearchItem);
+        Task<bool> DeleteCategory(int categoryId);
+        Task<IEnumerable<ProductDto>> SearchProduct(string SearchItem);
     }
 }

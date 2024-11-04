@@ -3,6 +3,7 @@ using EcommercePetsFoodBackend.Data.Models.Products;
 using EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommercePetsFoodBackend.Controllers
@@ -33,6 +34,75 @@ namespace EcommercePetsFoodBackend.Controllers
             }
             
         }
+        [HttpGet("GetProductsById/{id}")]
+        [Authorize(Roles ="admin")]
+        public async Task<ActionResult> GetProductById(int id)
+        {
+            try
+            {
+                var productById=await _Product.GetProductById(id);
+                return Ok(productById);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("update product")]
+        [Authorize(Roles ="admin")]
+        public async Task<IActionResult>UpdateProduct(int id, [FromForm]ProductDto product)
+        {
+            try
+            {
+                if (id == 0 || product == null) 
+                {
+                    return BadRequest("please fill all  the fields");
+                }
+                var updatedProduct=await _Product.UpdateProduct(id, product);
+                if (updatedProduct)
+                {
+                    return Ok(updatedProduct);
+                }
+                return NotFound();
+            }
+            catch (Exception ex) 
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetProductsByCategoryId/{id}")]
+        [Authorize(Roles = "admin,user")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductByCategoryId(int id)
+        {
+            try
+            {
+                var data=await _Product.GetProductByCategoryId(id);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500,ex.Message);
+            }
+        }
+
+        [HttpDelete("deleteProduct/{id}")]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            try
+            {
+                var delt = await _Product.DeleteProduct(id);
+                return Ok($"successfully deleted{id}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
         [HttpPost("addingCategory")]
         [Authorize(Roles = "admin")]
         public async Task<ActionResult> AddCategory([FromBody]string category)
@@ -47,6 +117,39 @@ namespace EcommercePetsFoodBackend.Controllers
                 throw new Exception(ex.Message);
             }
         }
-    
+
+        [HttpDelete("DeleteCategory/{id}")]
+        [Authorize(Roles = "admin")]
+    public async Task<IActionResult>DeleteCategory(int id)
+        {
+            try
+            {
+                await _Product.DeleteCategory(id);
+                return Ok($"succcessfully deleted{id}");
+            }
+            catch (Exception ex) 
+            { 
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("searchItem")]
+        public async Task<IActionResult> SearchProduct(string SearchItem)
+        {
+            try
+            {
+                if (SearchItem == null)
+                {
+                    return BadRequest("please write something");
+                }
+                var result=_Product.SearchProduct(SearchItem);
+
+                return Ok(result);
+            }
+            catch (Exception ex) 
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
