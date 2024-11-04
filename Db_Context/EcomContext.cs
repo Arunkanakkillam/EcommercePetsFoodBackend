@@ -31,8 +31,10 @@ namespace EcommercePetsFoodBackend.Db_Context
                     IsBlocked = false 
                 });
             modelBuilder.Entity<Product>()
-                    .HasOne(p => p.category)
-                    .WithMany(p => p.Products);
+                    .HasOne(p => p.Category)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(p => p.ProductCategoryId)
+                    .OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Product>()
                 .Property(p => p.Price)
                 .HasColumnType("decimal(18,2)");
