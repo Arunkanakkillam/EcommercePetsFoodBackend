@@ -35,7 +35,7 @@ namespace EcommercePetsFoodBackend.Controllers
             
         }
         [HttpGet("GetProductsById/{id}")]
-        [Authorize(Roles ="admin")]
+      
         public async Task<ActionResult> GetProductById(int id)
         {
             try

@@ -1,4 +1,6 @@
-﻿namespace EcommercePetsFoodBackend.Data.Models.Customer
+﻿using EcommercePetsFoodBackend.Data.Models.Wishlists;
+
+namespace EcommercePetsFoodBackend.Data.Models.Customer
 {
     public class Customers
     {
@@ -9,5 +11,6 @@
         public string Password { get; set; }
         public string Role { get; set; }
         public bool IsBlocked { get; set; }
+        public ICollection<Wishlist> Wishlist { get; set; }
     }
 }

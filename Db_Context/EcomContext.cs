@@ -1,6 +1,7 @@
 ﻿using EcommercePetsFoodBackend.Data.Dto;
 using EcommercePetsFoodBackend.Data.Models.Customer;
 using EcommercePetsFoodBackend.Data.Models.Products;
+using EcommercePetsFoodBackend.Data.Models.Wishlists;
 using Microsoft.EntityFrameworkCore;
 namespace EcommercePetsFoodBackend.Db_Context
 {
@@ -9,6 +10,7 @@ namespace EcommercePetsFoodBackend.Db_Context
         public DbSet<Customers> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
         public EcomContext(DbContextOptions<EcomContext> options):base(options)
         {
             
@@ -38,6 +40,14 @@ namespace EcommercePetsFoodBackend.Db_Context
             modelBuilder.Entity<Product>()
                 .Property(p => p.Price)
                 .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<Wishlist>()
+                .HasOne(u => u.customer)
+                .WithMany(w => w.Wishlist)
+                .HasForeignKey(u => u.UserId);
+            modelBuilder.Entity<Wishlist>()
+                .HasOne(p => p.product)
+                .WithMany(w => w.wishlists)
+                .HasForeignKey(p => p.ProductId);
         }
        
     }

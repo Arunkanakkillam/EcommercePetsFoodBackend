@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EcommercePetsFoodBackend.Data.Models.Wishlists;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EcommercePetsFoodBackend.Data.Models.Products
@@ -24,6 +25,9 @@ namespace EcommercePetsFoodBackend.Data.Models.Products
         [ForeignKey("Category")]
         public int ProductCategoryId { get; set; }
         public virtual Category Category { get; set; }
+
+        public ICollection<Wishlist> wishlists { get; set; }
+
 
     }
 }

@@ -260,5 +260,57 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.WishlistController",
+    "Method": "GetWishlist",
+    "RelativePath": "api/Wishlist",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EcommercePetsFoodBackend.Data.Dto.WishlistDto, EcommercePetsFoodBackend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.WishlistController",
+    "Method": "AddWishlist",
+    "RelativePath": "api/Wishlist/addWishlist/{productId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.WishlistController",
+    "Method": "DeleteWishlist",
+    "RelativePath": "api/Wishlist/RemoveWishlist{ProductId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ProductId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EcommercePetsFoodBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b6d26ebf6c913423232b845a0308555de6d7798")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e82286cdfec477fe6c36b10b6cbfed93923c5828")]
 [assembly: System.Reflection.AssemblyProductAttribute("EcommercePetsFoodBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EcommercePetsFoodBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

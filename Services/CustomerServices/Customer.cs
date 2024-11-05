@@ -67,6 +67,7 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices
                 {
                     Subject = new ClaimsIdentity(new[]
                     {
+            new Claim(ClaimTypes.NameIdentifier, customer.Id.ToString()),
             new Claim(ClaimTypes.Name, customer.Name),
             new Claim(ClaimTypes.Email, customer.Email),
             new Claim(ClaimTypes.Role, customer.Role)
