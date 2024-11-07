@@ -8,9 +8,11 @@ namespace EcommercePetsFoodBackend.Services.ServiceCart
     public class CartServices:ICartServices
     {
         private readonly EcomContext _context;
-        public CartServices(EcomContext context)
+        private readonly IConfiguration _configuration;
+        public CartServices(EcomContext context,IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
         public async Task<IEnumerable<CartDto>> GetAllItems(int id)
         {
@@ -34,7 +36,7 @@ namespace EcommercePetsFoodBackend.Services.ServiceCart
                     Id=p.Id,
                     Title = p.Product.ProductName,
                     Description = p.Product.ProductDescription,
-                    Image=p.Product.Image,
+                    Image = $"{_configuration["HostUrl:Images"]}/Products/{p.Product.Image}",
                     Price=p.Product.Price,
                     Quantity=p.Product.Quandity,
                     Total=p.Quantity * p.Product.Price

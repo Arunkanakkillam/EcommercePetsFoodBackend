@@ -5,6 +5,7 @@ using EcommercePetsFoodBackend.Db_Context;
 using EcommercePetsFoodBackend.Migrations;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
 {
@@ -12,11 +13,12 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
     {
         private readonly EcomContext _context;
         private readonly IMapper _mapper;
-
-        public ProductService(EcomContext context, IMapper mapper)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public ProductService(EcomContext context, IMapper mapper,IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _mapper=mapper;
+            _webHostEnvironment= webHostEnvironment;    
         }
 
        
@@ -38,11 +40,21 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
             }
         }
 
-        public async Task<ProductDto> AddProduct(ProductDto product)
+        public async Task<ProductDto> AddProduct(ProductDto product, IFormFile image)
         {
             try
             {
                 var data = _mapper.Map<Product>(product);
+                if (image != null && image.Length > 0) 
+                {
+                    var FileName=Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+                    var FilePath=Path.Combine(_webHostEnvironment.WebRootPath,"Images","Products",FileName);
+                    using (var stream = new FileStream(FilePath, FileMode.Create))
+                    {
+                        await image.CopyToAsync(stream);
+                    }
+                    data.Image = FileName;
+                }
                 await _context.Products.AddAsync(data);
                 await _context.SaveChangesAsync();
                 return _mapper.Map<ProductDto>(data);
@@ -91,7 +103,7 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
                 throw new Exception($"Database update error: {innerMessage}");
             }
         }
-        public async Task<bool> UpdateProduct(int id,ProductDto product)
+        public async Task<bool> UpdateProduct(int id,ProductDto product,IFormFile image)
         {
             try
             {
@@ -100,10 +112,33 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
                 {
                     return false;
                 }
+                int SomeId;
+                if (!int.TryParse(product.ProductCategoryId.ToString(), out SomeId)) 
+                {
+                    throw new Exception("invalid category id");
+                }
+                string SomeImage=null;
+                if (image != null && image.Length > 0) 
+                {
+                    var FileName=Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+                    var DirectoryPath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", "Products");
+                    if (!Directory.Exists(DirectoryPath)) 
+                    {
+                        Directory.CreateDirectory(DirectoryPath);
+                    }
+                    var FilePath=Path.Combine(DirectoryPath,FileName);
+                    using(var Stream=new FileStream(FilePath, FileMode.Create))
+                    {
+                        await image.CopyToAsync(Stream);
+                        SomeImage= FileName;
+                    }
+                }
+
+
                 data.ProductName = product.ProductName;
                 data.ProductDescription = product.ProductDescription;
                 data.Price = product.Price;
-                data.Image= product.Image;
+                data.Image= SomeImage;
                 data.Quandity = product.Quandity;
                 _context.SaveChangesAsync();
                 return true;

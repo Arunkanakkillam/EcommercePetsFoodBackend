@@ -83,7 +83,6 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices
 
                 return new LoginDto
                 {
-                    Email = customer.Email,
                     Token = jwtToken
                 };
             }

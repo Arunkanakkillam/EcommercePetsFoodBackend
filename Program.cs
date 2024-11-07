@@ -1,8 +1,10 @@
 
+using EcommercePetsFoodBackend.customMiddleware;
 using EcommercePetsFoodBackend.Db_Context;
 using EcommercePetsFoodBackend.Mapper;
 using EcommercePetsFoodBackend.Services.CustomerServices;
 using EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct;
+using EcommercePetsFoodBackend.Services.ServiceCart;
 using EcommercePetsFoodBackend.Services.WishlistServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -79,6 +81,7 @@ namespace EcommercePetsFoodBackend
             builder.Services.AddScoped<ICustomer, Customer>();
             builder.Services.AddScoped<IProductServices, ProductService>();
             builder.Services.AddScoped<IwishlistServices, WishlistServices>();
+            builder.Services.AddScoped<ICartServices,CartServices>();
             builder.Services.AddDbContext<EcomContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("EcommerceConctn")));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -96,8 +99,11 @@ namespace EcommercePetsFoodBackend
             app.UseHttpsRedirection();
 
             app.UseDeveloperExceptionPage();
+
+
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseMiddleware<UserIdMiddleware>();
 
             app.MapControllers();
 

@@ -21,11 +21,11 @@ namespace EcommercePetsFoodBackend.Controllers
         [HttpPost("AddProduct")]
         [Authorize(Roles = "admin")]
 
-        public async Task<ActionResult> AddProduct([FromBody] ProductDto product)
+        public async Task<ActionResult> AddProduct([FromBody] ProductDto product, IFormFile img)
         {
             try
             {
-                var newProduct =await _Product.AddProduct(product);
+                var newProduct =await _Product.AddProduct(product,img);
                 return Ok(newProduct);
             }
             catch (Exception ex) 
@@ -51,7 +51,7 @@ namespace EcommercePetsFoodBackend.Controllers
 
         [HttpPut("update product")]
         [Authorize(Roles ="admin")]
-        public async Task<IActionResult>UpdateProduct(int id, [FromForm]ProductDto product)
+        public async Task<IActionResult>UpdateProduct(int id, [FromForm]ProductDto product, IFormFile img)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace EcommercePetsFoodBackend.Controllers
                 {
                     return BadRequest("please fill all  the fields");
                 }
-                var updatedProduct=await _Product.UpdateProduct(id, product);
+                var updatedProduct=await _Product.UpdateProduct(id, product,img);
                 if (updatedProduct)
                 {
                     return Ok(updatedProduct);

@@ -1,5 +1,89 @@
 [
   {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.CartController",
+    "Method": "AddCartItem",
+    "RelativePath": "api/Cart/additemtocart/{productid}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productid",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.CartController",
+    "Method": "DeleteCartItem",
+    "RelativePath": "api/Cart/cartitem delete/{productid}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productid",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.CartController",
+    "Method": "GetAllItems",
+    "RelativePath": "api/Cart/cartitems",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EcommercePetsFoodBackend.Data.Dto.CartDto, EcommercePetsFoodBackend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.CartController",
+    "Method": "DecrementQuantity",
+    "RelativePath": "api/Cart/Decrement product/{productid}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productid",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommercePetsFoodBackend.Controllers.CartController",
+    "Method": "IncrementQuantity",
+    "RelativePath": "api/Cart/increment product/{productid}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productid",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EcommercePetsFoodBackend.Controllers.CustomerController",
     "Method": "CustomerRegister",
     "RelativePath": "api/Customer",
@@ -111,6 +195,11 @@
         "Name": "product",
         "Type": "EcommercePetsFoodBackend.Data.Dto.ProductDto",
         "IsRequired": true
+      },
+      {
+        "Name": "img",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -256,6 +345,11 @@
       {
         "Name": "Image",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "img",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
       }
     ],

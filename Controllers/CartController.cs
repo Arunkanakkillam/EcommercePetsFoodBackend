@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace EcommercePetsFoodBackend.Controllers
 {
-    [Authorize(Roles ="User")]
+    [Authorize(Roles ="user")]
     [Route("api/[controller]")]
     [ApiController]
     public class CartController : ControllerBase
@@ -22,8 +22,7 @@ namespace EcommercePetsFoodBackend.Controllers
         {
             try
             {
-                var user_id = GetUserId();
-                var _user_id = user_id.Value;
+                var _user_id = Convert.ToInt32(HttpContext.Items["Id"]);
                 var data = await _cartServices.GetAllItems(_user_id);
 
                 if (data == null||!data.Any()) 
@@ -46,9 +45,8 @@ namespace EcommercePetsFoodBackend.Controllers
         {
             try
             {
-                var user_id = GetUserId();
-                var _user_Id = user_id.Value;
-                var data = await _cartServices.AddCartItem(_user_Id, productid);
+                var _user_id = Convert.ToInt32(HttpContext.Items["Id"]);
+                var data = await _cartServices.AddCartItem(_user_id, productid);
                 if (data)
                 {
                     return Ok("successfull!!");
@@ -67,8 +65,8 @@ namespace EcommercePetsFoodBackend.Controllers
         {
             try
             {
-                var user_id = GetUserId();
-                var _user_id = user_id.Value;
+                var _user_id = Convert.ToInt32(HttpContext.Items["Id"]);
+
                 var data = await _cartServices.DeleteCartItem(_user_id, productid);
                 if (data)
                 {
@@ -86,8 +84,7 @@ namespace EcommercePetsFoodBackend.Controllers
         {
             try
             {
-                var user_id = GetUserId();
-                var _user_id=user_id.Value;
+                var _user_id = Convert.ToInt32(HttpContext.Items["Id"]);
                 var data=await _cartServices.IncrementQuantity(_user_id, productid);
                 if (data)
                 {
@@ -107,8 +104,7 @@ namespace EcommercePetsFoodBackend.Controllers
         {
             try
             {
-                var user_id = GetUserId();
-                var _user_id = user_id.Value;
+                var _user_id = Convert.ToInt32(HttpContext.Items["Id"]);
                 var data = await _cartServices.DecrementQuantity(_user_id, productid);
                 if (data)
                 {
@@ -123,14 +119,6 @@ namespace EcommercePetsFoodBackend.Controllers
         }
 
 
-        private ActionResult<int> GetUserId()
-        {
-            var IdInString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (int.TryParse(IdInString, out var id))
-            {
-                return id;
-            }
-            return Unauthorized();
-        }
+      
     }
 }

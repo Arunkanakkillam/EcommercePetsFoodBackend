@@ -8,9 +8,11 @@ namespace EcommercePetsFoodBackend.Services.WishlistServices
     public class WishlistServices:IwishlistServices
     {
         private readonly EcomContext _context;
-        public WishlistServices(EcomContext context)
+        private readonly IConfiguration _configuration;
+        public WishlistServices(EcomContext context,IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         public async Task<IEnumerable<WishlistDto>> GetWishlist(int id)
@@ -38,7 +40,7 @@ namespace EcommercePetsFoodBackend.Services.WishlistServices
                     Description = p.product.ProductDescription,
                     price = ((decimal)p.product.Price),
                     categoryName = p.product.Category.CategoryName,
-                    image = p.product.Image
+                    image = $"{_configuration["HostUrl:Images"]}/Products/{p.product.Image}"
 
                 });
                 return data.ToList();

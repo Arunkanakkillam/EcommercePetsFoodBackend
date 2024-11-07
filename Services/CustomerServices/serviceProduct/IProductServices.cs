@@ -8,8 +8,8 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
         Task<IEnumerable<ProductDto>> GetAllProducts();
         Task<Product> GetProductById(int id);
         Task<IEnumerable<Product>> GetProductByCategoryId(int id);
-        Task<ProductDto> AddProduct(ProductDto product);
-        Task<bool> UpdateProduct(int id, ProductDto product);
+        Task<ProductDto> AddProduct(ProductDto product,IFormFile image);
+        Task<bool> UpdateProduct(int id, ProductDto product,IFormFile image);
         Task <bool> DeleteProduct(int id);
         Task<bool> AddNewCategory(string category);
         Task<bool> DeleteCategory(int categoryId);
