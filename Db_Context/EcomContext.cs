@@ -1,6 +1,7 @@
 ﻿using EcommercePetsFoodBackend.Data.Dto;
 using EcommercePetsFoodBackend.Data.Models.cartmodel;
 using EcommercePetsFoodBackend.Data.Models.Customer;
+using EcommercePetsFoodBackend.Data.Models.Orders;
 using EcommercePetsFoodBackend.Data.Models.Products;
 using EcommercePetsFoodBackend.Data.Models.Wishlists;
 using EcommercePetsFoodBackend.Services.CustomerServices;
@@ -14,6 +15,9 @@ namespace EcommercePetsFoodBackend.Db_Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+        public  DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
         public EcomContext(DbContextOptions<EcomContext> options):base(options)
         {
             
@@ -70,6 +74,30 @@ namespace EcommercePetsFoodBackend.Db_Context
                 .HasOne(p=>p.Product)
                 .WithMany(c => c.Items)
                 .HasForeignKey(c => c.ProductId);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(o=>o.customer)
+                .WithMany(o=>o.orders)
+                .HasForeignKey(f=>f.CustomerId);
+
+            modelBuilder.Entity<OrderItem>()
+                .Property(o => o.Price)
+                .HasPrecision(18, 2);
+
+            modelBuilder.Entity<OrderItem>()
+                .Property(pr => pr.TotalPrice)
+                .HasPrecision(18, 2);
+
+
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.orders)
+                .WithMany(oi => oi.orderItems)
+                .HasForeignKey(f => f.OrderId);
+
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(p=>p.Product)
+                .WithMany(oi=>oi.OrderItem)
+                .HasForeignKey(f=>f.ProductId);
 
                 }
        

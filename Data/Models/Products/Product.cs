@@ -1,4 +1,5 @@
 ﻿using EcommercePetsFoodBackend.Data.Models.cartmodel;
+using EcommercePetsFoodBackend.Data.Models.Orders;
 using EcommercePetsFoodBackend.Data.Models.Wishlists;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -27,6 +28,7 @@ namespace EcommercePetsFoodBackend.Data.Models.Products
         public int ProductCategoryId { get; set; }
         public virtual Category Category { get; set; }
         public ICollection<CartItem> Items {  get; set; } 
+        public ICollection<OrderItem> OrderItem { get; set; }
         public ICollection<Wishlist> wishlists { get; set; }
 
 
