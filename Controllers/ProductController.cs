@@ -34,6 +34,20 @@ namespace EcommercePetsFoodBackend.Controllers
             }
             
         }
+
+        [HttpGet("Get All Products")]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetAllProducts()
+        {
+            try
+            {
+                var data=await _Product.GetAllProducts();
+                return Ok(data);
+            }
+            catch (Exception ex) 
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpGet("GetProductsById/{id}")]
       
         public async Task<ActionResult> GetProductById(int id)

@@ -144,3 +144,6 @@ D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\obj\Debug\net8.0\ref
 D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\obj\Debug\net8.0\EcommercePetsFoodBackend.pdb
 D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\obj\Debug\net8.0\EcommercePetsFoodBackend.genruntimeconfig.cache
 D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\obj\Debug\net8.0\ref\EcommercePetsFoodBackend.dll
+D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\bin\Debug\net8.0\BouncyCastle.Crypto.dll
+D:\dotnet\EcommercePetsFoodBackend\EcommercePetsFoodBackend\bin\Debug\net8.0\Razorpay.dll

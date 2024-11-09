@@ -27,7 +27,7 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
         {
             try
             {
-                var data = await _context.Products.FromSqlRaw("select p.* from products p inner join categories c on p.categoryId=c.Id").ToListAsync();
+                var data = await _context.Products.FromSqlRaw("select p.* from products p inner join categories c on p.productCategoryId=c.categoryId").ToListAsync();
                 if (data != null)
                 {
                     return _mapper.Map<IEnumerable<ProductDto>>(data);

@@ -120,33 +120,89 @@ namespace EcommercePetsFoodBackend.Services.OrderServices
             }
         }
 
-        //public async Task<IEnumerable<OutPutOrderDto>> CustomersOrders(int id)
-        //{
-        //    await using var transaction = await _context.Database.BeginTransactionAsync();
-        //    try
-        //    {
-        //        var order=await _context.Customers
-        //            .Include(o=>o.orders)
-        //            .ThenInclude(oi=>oi.orderItems)
-        //            .ThenInclude(p=>p.Product)
-        //            .SingleOrDefaultAsync(u=>u.Id == id);
-        //        if(order == null || order.orders == null)
-        //        {
-        //            return new List<OutPutOrderDto>();
-        //        }
-        //        var orderList = order.orders.orderItems.Selecct(oi=>new OutPutOrderDto
-        //        {
-        //            id
-        //        }) 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //    }
-        //}
+        public async Task<IEnumerable<OutPutOrderDto>> CustomersOrders(int id)
+        {
+            try
+            {
+                var order = await _context.Customers
+                    .Include(o => o.orders)
+                    .ThenInclude(oi => oi.orderItems)
+                    .ThenInclude(p => p.Product)
+                    .SingleOrDefaultAsync(u => u.Id == id);
+                if ( order?.orders == null)
+                {
+                    return Enumerable.Empty<OutPutOrderDto>();
+                }
+                var orderList = order.orders.SelectMany(o => o.orderItems.Select(oi => new OutPutOrderDto
+                {
+                    Id = oi.OrderItemId,
+                    ProductId = oi.ProductId,
+                    Quantity = oi.Quantity,
+                    Price = oi.Price,
+                    Total = oi.TotalPrice,
+                    UserId = oi.OrderId,
+                    image = oi.Product.Image
+                }))
+                    .ToList();
+                return orderList;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"Failed to get customer orders: " +
+                    $"{ex.InnerException?.Message ?? ex.Message}");
+            }
+        }
 
+        public async Task<IEnumerable<OutPutOrderDto>> GetAllOrders()
+        {
+            try
+            {
+                var order = await _context.Customers
+                    .Include(o => o.orders)
+                    .ThenInclude(oi => oi.orderItems)
+                    .ThenInclude(p => p.Product)
+                    .ToListAsync();
+                if(order?.Count == 0)
+                {
+                    return Enumerable.Empty<OutPutOrderDto>();
+                }
+                var orderList = order.SelectMany(customer => customer.orders.SelectMany(order => order.orderItems.Select(orderItem => new OutPutOrderDto
+                {
+                    Id = order.OrderId,
+                    Quantity = orderItem.Quantity,
+                    ProductId = orderItem.ProductId,
+                    Price = orderItem.Price,
+                    Total = orderItem.TotalPrice,
+                    UserId = customer.Id,
+                    image = orderItem.Product.Image
 
+                }))).ToList();
+                return orderList;   
+            }
+            catch (Exception ex)
+            { 
+                throw new InvalidOperationException($"Failed to GetAllOrders: {ex.Message}" );
+            }
+        }
 
-
+        public async Task<bool> DeleteAllOrders(int id)
+        {
+            try
+            {
+                var order=await _context.Orders.SingleOrDefaultAsync(o=>o.CustomerId==id);
+                if (order == null)
+                {
+                    return false;
+                }
+                 _context.Orders.Remove(order);
+                _context.SaveChanges();
+                return true;
+            }
+            catch(Exception ex) 
+            {
+                throw new InvalidOperationException($"failed to delete orders: {ex.Message}");
+            }
+        }
 
 
 
