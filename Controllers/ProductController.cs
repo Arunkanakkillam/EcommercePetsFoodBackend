@@ -21,7 +21,7 @@ namespace EcommercePetsFoodBackend.Controllers
         [HttpPost("AddProduct")]
         [Authorize(Roles = "admin")]
 
-        public async Task<ActionResult> AddProduct([FromBody] ProductDto product, IFormFile img)
+        public async Task<ActionResult> AddProduct([FromForm] ProductDto product,IFormFile img)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace EcommercePetsFoodBackend.Controllers
 
         [HttpPut("update product")]
         [Authorize(Roles ="admin")]
-        public async Task<IActionResult>UpdateProduct(int id, [FromForm]ProductDto product, IFormFile img)
+        public async Task<IActionResult>UpdateProduct(int id, [FromForm]ProductDto product,IFormFile img)
         {
             try
             {

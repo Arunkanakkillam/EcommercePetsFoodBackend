@@ -14,11 +14,13 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
         private readonly EcomContext _context;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public ProductService(EcomContext context, IMapper mapper,IWebHostEnvironment webHostEnvironment)
+        private readonly IConfiguration _configuration;
+        public ProductService(EcomContext context, IMapper mapper,IWebHostEnvironment webHostEnvironment, IConfiguration configuration )
         {
             _context = context;
             _mapper=mapper;
-            _webHostEnvironment= webHostEnvironment;    
+            _webHostEnvironment= webHostEnvironment;
+            _configuration = configuration;
         }
 
        
@@ -30,7 +32,19 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
                 var data = await _context.Products.FromSqlRaw("select p.* from products p inner join categories c on p.productCategoryId=c.categoryId").ToListAsync();
                 if (data != null)
                 {
-                    return _mapper.Map<IEnumerable<ProductDto>>(data);
+                    var img = data.Select(p =>
+                    new ProductDto
+                    {
+                        ProductId = p.ProductId,
+                        IsAvailable = p.IsAvailable,
+                        Image = $"{_configuration["HostUrl:Images"]}/Products/{p.Image}",
+                        Price = p.Price,
+                        ProductCategoryId = p.ProductCategoryId,
+                        ProductDescription = p.ProductDescription,
+                        ProductName = p.ProductName,
+                        Quandity = p.Quandity
+                    });
+                    return img.ToList();
                 }
                 return null;
             }

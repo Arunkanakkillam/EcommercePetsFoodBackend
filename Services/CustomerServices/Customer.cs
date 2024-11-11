@@ -83,7 +83,9 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices
 
                 return new LoginDto
                 {
-                    Token = jwtToken
+                    Token = jwtToken,
+                    Name= customer.Name
+
                 };
             }
             return new LoginDto { Error = "oopss!" };

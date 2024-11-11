@@ -84,10 +84,19 @@ namespace EcommercePetsFoodBackend
             builder.Services.AddScoped<ICartServices,CartServices>();
             builder.Services.AddDbContext<EcomContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("EcommerceConctn")));
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowReactApp", policy => policy.
+                WithOrigins("http://localhost:5173")
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 
             var app = builder.Build();
+            app.UseCors("AllowReactApp");
+            app.UseStaticFiles();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

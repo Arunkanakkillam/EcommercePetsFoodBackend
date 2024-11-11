@@ -1,0 +1,85 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\0b4a4826-c6b0-4399-8224-3339c27dfde8.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\0b4a4826-c6b0-4399-8224-3339c27dfde8.jpg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\1006cb13-30dd-47f0-95a6-73ec5ac82de9.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Products\\1006cb13-30dd-47f0-95a6-73ec5ac82de9.jpeg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\1ca0f76a-6621-4753-90cb-bfa9971f3b30.avif",
+      "PackagePath": "staticwebassets\\Images\\Products\\1ca0f76a-6621-4753-90cb-bfa9971f3b30.avif"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\2f92859e-fb58-405e-a865-c9ab2857ca55.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\2f92859e-fb58-405e-a865-c9ab2857ca55.jpg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\34ab78ed-5e0e-4562-af89-d01ec59677d0.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\34ab78ed-5e0e-4562-af89-d01ec59677d0.jpg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\3a27fec1-6a9d-40ee-aea4-56f716073f31.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\3a27fec1-6a9d-40ee-aea4-56f716073f31.jpg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\3bd63b6c-d4ef-4544-b466-3baa4b26ae87.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\3bd63b6c-d4ef-4544-b466-3baa4b26ae87.jpg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\3e31791e-50fe-467c-908b-fb3e067f8d51.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\3e31791e-50fe-467c-908b-fb3e067f8d51.jpg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\62714d05-f4fa-4214-a447-525c22455532.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\62714d05-f4fa-4214-a447-525c22455532.jpg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\7a8caece-acb7-4c59-9593-acd6f6baf772.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Products\\7a8caece-acb7-4c59-9593-acd6f6baf772.jpeg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\9a956f6f-be7c-4cf8-97fb-dcece537e94f.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\9a956f6f-be7c-4cf8-97fb-dcece537e94f.jpg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\9bd47512-aa74-4312-92d1-f3d561daa521.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\9bd47512-aa74-4312-92d1-f3d561daa521.jpg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\d988e1a8-e40e-46db-b806-ca2a589b9d12.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\d988e1a8-e40e-46db-b806-ca2a589b9d12.jpg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\e39fb226-8f7f-40ad-9be6-cfeeb8da741f.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Products\\e39fb226-8f7f-40ad-9be6-cfeeb8da741f.jpeg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\e4474ffe-b6e1-4d3f-9c72-7f8321b2511f.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\e4474ffe-b6e1-4d3f-9c72-7f8321b2511f.jpg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\f1c38686-9f98-4efc-b936-d1154ac3f393.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\f1c38686-9f98-4efc-b936-d1154ac3f393.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.EcommercePetsFoodBackend.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.EcommercePetsFoodBackend.props",
+      "PackagePath": "build\\EcommercePetsFoodBackend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.EcommercePetsFoodBackend.props",
+      "PackagePath": "buildMultiTargeting\\EcommercePetsFoodBackend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.EcommercePetsFoodBackend.props",
+      "PackagePath": "buildTransitive\\EcommercePetsFoodBackend.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
