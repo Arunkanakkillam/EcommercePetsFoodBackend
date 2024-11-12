@@ -41,10 +41,10 @@ namespace EcommercePetsFoodBackend.Db_Context
                 });
 
             modelBuilder.Entity<Product>()
-                    .HasOne(p => p.Category)
-                    .WithMany(p => p.Products)
-                    .HasForeignKey(p => p.ProductCategoryId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                 .HasOne(p => p.Category)
+                 .WithMany(p => p.Products)
+                 .HasForeignKey(p => p.ProductCategoryId)
+                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Product>()
                 .Property(p => p.Price)

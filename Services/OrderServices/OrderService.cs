@@ -189,12 +189,12 @@ namespace EcommercePetsFoodBackend.Services.OrderServices
         {
             try
             {
-                var order=await _context.Orders.SingleOrDefaultAsync(o=>o.CustomerId==id);
+                var order=await _context.Orders.Where(o=>o.CustomerId==id).ToListAsync();
                 if (order == null)
                 {
                     return false;
                 }
-                 _context.Orders.Remove(order);
+                 _context.Orders.RemoveRange(order);
                 _context.SaveChanges();
                 return true;
             }
