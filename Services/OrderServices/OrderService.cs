@@ -203,7 +203,21 @@ namespace EcommercePetsFoodBackend.Services.OrderServices
                 throw new InvalidOperationException($"failed to delete orders: {ex.Message}");
             }
         }
-
+        public async Task<decimal> TotalRevenue()
+        {
+          
+            try
+            {
+                var revenue = await _context.OrderItems.FromSqlRaw("select sum(totalprice) as TotalRevenue from OrderItems")
+                .Select(r => r.TotalPrice)
+                .FirstOrDefaultAsync();
+                return revenue;
+            }
+            catch (Exception ex) 
+            {
+                throw new InvalidOperationException(ex.Message);
+            }
+        }
 
 
         private async Task<Data.Models.Orders.Order> GetOrCreateOrderAsync(int userId)
