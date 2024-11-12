@@ -9,7 +9,7 @@ namespace EcommercePetsFoodBackend.Services.OrderServices
         Task<bool> DeleteAllOrders(int id);
         Task<string> OrderCreate(long price);
         //Task<IEnumerable<object>> NumbersOfPurchase();
-        Task<decimal> TotalRevenue();
+        Task<Revenuedto> TotalRevenue();
         Task<bool> Payment(RazorPayDto PaymentDto);
         Task<bool> CreateOrder(InputOrderDto UserCredential);
     }

@@ -48,7 +48,7 @@ namespace EcommercePetsFoodBackend.Controllers
             }
         }
         [HttpGet("userorderuser")]
-        [Authorize]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> UserOrders()
         {
             try
@@ -70,7 +70,7 @@ namespace EcommercePetsFoodBackend.Controllers
         }
 
         [HttpPost("place-order")]
-        [Authorize]
+        [Authorize(Roles ="user")]
         public async Task<ActionResult> PlaceOrder(InputOrderDto credentials)
         {
             try
@@ -91,7 +91,7 @@ namespace EcommercePetsFoodBackend.Controllers
         }
 
         [HttpPost("order-create")]
-        [Authorize]
+        [Authorize(Roles ="user")]
         public async Task<ActionResult> OrderCreate([FromBody] long price)
         {
             try
@@ -109,7 +109,8 @@ namespace EcommercePetsFoodBackend.Controllers
             }
         }
 
-
+        [HttpPost("payment")]
+        [Authorize(Roles = "user")]
         public async Task<ActionResult> Payment(RazorPayDto pay)
         {
             try
@@ -132,7 +133,7 @@ namespace EcommercePetsFoodBackend.Controllers
             }
         }
         [HttpDelete("cancelOrder")]
-        [Authorize]
+        [Authorize(Roles = "user")]
         public async Task<ActionResult> CancelOrder()
         {
             try
@@ -150,12 +151,13 @@ namespace EcommercePetsFoodBackend.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
+        [HttpGet("revenue")]
+        [Authorize(Roles ="admin")]
         public async Task<IActionResult> Revenue()
         {
             try
             {
-                var revenue=_orderService.TotalRevenue();
+                var revenue=await _orderService.TotalRevenue();
                 return Ok(revenue);
             }
             catch (Exception ex)

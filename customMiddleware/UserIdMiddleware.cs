@@ -13,7 +13,6 @@ namespace EcommercePetsFoodBackend.customMiddleware
         }
         public async Task InvokeAsync(HttpContext context)
         {
-            // Skip if no authorization header (e.g., for login route)
             if (!context.Request.Headers.ContainsKey("Authorization"))
             {
                 await _next(context);
@@ -24,7 +23,6 @@ namespace EcommercePetsFoodBackend.customMiddleware
             {
                 _logger.LogInformation($"{context.User.Identity?.IsAuthenticated} checking true or false");
 
-                // Extract user ID from claims
                 var UserIdClaim = context.User.FindFirst(ClaimTypes.NameIdentifier);
                 _logger.LogInformation($"{UserIdClaim} userid");
 
@@ -35,7 +33,7 @@ namespace EcommercePetsFoodBackend.customMiddleware
                 }
             }
 
-            await _next(context);  // Continue to the next middleware
+            await _next(context);  
         }
 
 

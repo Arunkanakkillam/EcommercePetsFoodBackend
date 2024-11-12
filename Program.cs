@@ -4,6 +4,7 @@ using EcommercePetsFoodBackend.Db_Context;
 using EcommercePetsFoodBackend.Mapper;
 using EcommercePetsFoodBackend.Services.CustomerServices;
 using EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct;
+using EcommercePetsFoodBackend.Services.OrderServices;
 using EcommercePetsFoodBackend.Services.ServiceCart;
 using EcommercePetsFoodBackend.Services.WishlistServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -82,6 +83,7 @@ namespace EcommercePetsFoodBackend
             builder.Services.AddScoped<IProductServices, ProductService>();
             builder.Services.AddScoped<IwishlistServices, WishlistServices>();
             builder.Services.AddScoped<ICartServices,CartServices>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddDbContext<EcomContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("EcommerceConctn")));
             builder.Services.AddCors(options =>

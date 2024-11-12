@@ -1,5 +1,4 @@
 ﻿using EcommercePetsFoodBackend.Data.Dto;
-using EcommercePetsFoodBackend.Data.Models.cartmodel;
 using EcommercePetsFoodBackend.Data.Models.Orders;
 using EcommercePetsFoodBackend.Db_Context;
 using Microsoft.EntityFrameworkCore;
@@ -203,15 +202,17 @@ namespace EcommercePetsFoodBackend.Services.OrderServices
                 throw new InvalidOperationException($"failed to delete orders: {ex.Message}");
             }
         }
-        public async Task<decimal> TotalRevenue()
+        public async Task<Revenuedto> TotalRevenue()
         {
           
             try
             {
-                var revenue = await _context.OrderItems.FromSqlRaw("select sum(totalprice) as TotalRevenue from OrderItems")
-                .Select(r => r.TotalPrice)
-                .FirstOrDefaultAsync();
-                return revenue;
+                var revenue = await _context.OrderItems
+                        .SumAsync(i => i.TotalPrice);
+                return new Revenuedto
+                {
+                    Total= revenue
+                };
             }
             catch (Exception ex) 
             {
