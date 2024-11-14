@@ -22,6 +22,7 @@ namespace EcommercePetsFoodBackend.Services.WishlistServices
                 var user=await _context.Customers
                     .Include(x => x.Wishlist)
                     .ThenInclude(p=>p.product)
+                    .ThenInclude(p=>p.Category)
                     .FirstOrDefaultAsync(c=>c.Id == id);
 
                 if(user == null)

@@ -33,12 +33,12 @@ namespace EcommercePetsFoodBackend.Services.ServiceCart
                 }
                 var items = data.cart.Items.Select(p=>new CartDto
                 {
-                    Id=p.Id,
+                    Id=p.ProductId,
                     Title = p.Product.ProductName,
                     Description = p.Product.ProductDescription,
                     Image = $"{_configuration["HostUrl:Images"]}/Products/{p.Product.Image}",
                     Price=p.Product.Price,
-                    Quantity=p.Product.Quandity,
+                    Quantity=p.Quantity,
                     Total=p.Quantity * p.Product.Price
                 });
                 return items.ToList();
@@ -129,7 +129,7 @@ namespace EcommercePetsFoodBackend.Services.ServiceCart
                 {
                     return false ;
                 }
-                item.Quantity += 1;
+                item.Quantity +=1;
                 await _context.SaveChangesAsync();
                 return true;
             }
@@ -161,7 +161,7 @@ namespace EcommercePetsFoodBackend.Services.ServiceCart
                 {
                     return false;
                 }
-                item.Quantity -= 1;
+                item.Quantity = item.Quantity - 1;
                 await _context.SaveChangesAsync();
                 return true;
             }
