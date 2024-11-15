@@ -205,6 +205,7 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
                 var CategoryId = categoryId;
                 await _context.Database.ExecuteSqlRawAsync("DELETE FROM Products WHERE ProductCategoryId = {0}", categoryId);
                 var rowsAffected = await _context.Database.ExecuteSqlRawAsync("DELETE FROM Categories WHERE CategoryId = {0}", categoryId);
+
                 return rowsAffected> 0;
             }
             catch(Exception ex)
@@ -222,7 +223,21 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
                 {
                     return new List<ProductDto>();
                 }
-                return _mapper.Map<List<ProductDto>>(Item); 
+                var productDtos = Item.Select(p=>
+                  new ProductDto
+                  {
+                      ProductId = p.ProductId,
+                      IsAvailable = p.IsAvailable,
+                      Image = $"{_configuration["HostUrl:Images"]}/Products/{p.Image}",
+                      Price = p.Price,
+                      ProductCategoryId = p.ProductCategoryId,
+                      ProductDescription = p.ProductDescription,
+                      ProductName = p.ProductName,
+                      Quandity = p.Quandity
+                  });
+               
+
+                return productDtos.ToList(); 
             }
             catch (Exception ex)
             {
