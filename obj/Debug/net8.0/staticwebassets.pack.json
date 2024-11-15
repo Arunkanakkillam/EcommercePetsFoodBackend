@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\Images\\Products\\1006cb13-30dd-47f0-95a6-73ec5ac82de9.jpeg"
     },
     {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\10e77b87-7bda-4fdc-a12c-37606992e76f.png",
+      "PackagePath": "staticwebassets\\Images\\Products\\10e77b87-7bda-4fdc-a12c-37606992e76f.png"
+    },
+    {
       "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\1ca0f76a-6621-4753-90cb-bfa9971f3b30.avif",
       "PackagePath": "staticwebassets\\Images\\Products\\1ca0f76a-6621-4753-90cb-bfa9971f3b30.avif"
     },
@@ -47,6 +51,14 @@
     {
       "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\9bd47512-aa74-4312-92d1-f3d561daa521.jpg",
       "PackagePath": "staticwebassets\\Images\\Products\\9bd47512-aa74-4312-92d1-f3d561daa521.jpg"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\a4228c6a-e998-4b30-ab7f-08aa88eae97f.png",
+      "PackagePath": "staticwebassets\\Images\\Products\\a4228c6a-e998-4b30-ab7f-08aa88eae97f.png"
+    },
+    {
+      "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\cc2fd3c3-6232-465f-b02c-67597ed13757.png",
+      "PackagePath": "staticwebassets\\Images\\Products\\cc2fd3c3-6232-465f-b02c-67597ed13757.png"
     },
     {
       "Id": "D:\\dotnet\\EcommercePetsFoodBackend\\EcommercePetsFoodBackend\\wwwroot\\Images\\Products\\d988e1a8-e40e-46db-b806-ca2a589b9d12.jpg",

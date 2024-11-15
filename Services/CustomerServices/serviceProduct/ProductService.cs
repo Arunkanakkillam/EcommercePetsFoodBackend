@@ -154,7 +154,7 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
                 data.Price = product.Price;
                 data.Image= SomeImage;
                 data.Quandity = product.Quandity;
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)

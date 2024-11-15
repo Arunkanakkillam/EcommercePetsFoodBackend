@@ -63,9 +63,9 @@ namespace EcommercePetsFoodBackend.Controllers
             }
         }
 
-        [HttpPut("update product")]
+        [HttpPut("update_product")]
         [Authorize(Roles ="admin")]
-        public async Task<IActionResult>UpdateProduct(int id, [FromForm]ProductDto product,IFormFile img)
+        public async Task<IActionResult>UpdateProduct(int id, [FromForm]ProductDto product,[FromForm]IFormFile img)
         {
             try
             {

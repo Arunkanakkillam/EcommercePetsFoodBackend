@@ -84,7 +84,8 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices
                 return new LoginDto
                 {
                     Token = jwtToken,
-                    Name= customer.Name
+                    Name= customer.Name,
+                    Role= customer.Role,
 
                 };
             }
@@ -149,9 +150,7 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices
         {
             try
             {
-                var customer = await _context.Database.ExecuteSqlRawAsync("UPDATE Customers set isblocked=case" +
-                    "when isblocked=0 then 1 " +
-                    "else 0 end where email=@Email",
+                var customer = await _context.Database.ExecuteSqlRawAsync("UPDATE Customers set isblocked=case when isblocked=0 then 1 else 0 end where email=@Email",
                 new SqlParameter("@Email", email));
                 return customer > 0;
             }
