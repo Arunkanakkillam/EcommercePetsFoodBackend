@@ -32,7 +32,7 @@ namespace EcommercePetsFoodBackend.Services.OrderServices
                 data.Add("receipt", TransactionId);
                 string _key = _configuration["Razorpay:Key"];
                 string _secret = _configuration["Razorpay:Secret"];
-                var client=new RazorpayClient(_key, _secret);
+                RazorpayClient client=new RazorpayClient(_key, _secret);
                 Razorpay.Api.Order order=client.Order.Create(data);
                 var OrderId = order["id"].ToString();
                 return OrderId;

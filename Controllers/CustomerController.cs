@@ -51,8 +51,12 @@ namespace EcommercePetsFoodBackend.Controllers
                 {
                     return BadRequest("password doesn't match");
                 }
-                return Ok(new LoginDto { Token=existingCustomer.Token,
-                Name=existingCustomer.Name});
+                return Ok(new LoginDto { 
+                Token=existingCustomer.Token,
+                Name=existingCustomer.Name,
+                Role=existingCustomer.Role,
+                User_Id=existingCustomer.User_Id,
+                });
             }
             catch(Exception ex) 
             {

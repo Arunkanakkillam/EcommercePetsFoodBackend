@@ -85,6 +85,7 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices
                 {
                     Token = jwtToken,
                     Name= customer.Name,
+                    User_Id=customer.Id,
                     Role= customer.Role,
 
                 };

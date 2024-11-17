@@ -3,6 +3,7 @@ using EcommercePetsFoodBackend.Services.OrderServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 
 namespace EcommercePetsFoodBackend.Controllers
@@ -12,9 +13,11 @@ namespace EcommercePetsFoodBackend.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _orderService;
-        public OrderController(IOrderService orderService)
+        private readonly ILogger<OrderController> _logger;
+        public OrderController(IOrderService orderService, ILogger<OrderController> logger)
         {
             _orderService = orderService;
+            _logger = logger;   
         }
 
 
@@ -37,6 +40,7 @@ namespace EcommercePetsFoodBackend.Controllers
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> CustomersOrder(int id)
         {
+
             try
             {
                 var order_List = await _orderService.CustomersOrders(id);
@@ -73,6 +77,9 @@ namespace EcommercePetsFoodBackend.Controllers
         [Authorize(Roles ="user")]
         public async Task<ActionResult> PlaceOrder(InputOrderDto credentials)
         {
+
+            _logger.LogInformation($"Received order request: {JsonConvert.SerializeObject(credentials)}");
+
             try
             {
                 var User_id = Convert.ToInt32(HttpContext.Items["Id"]);
@@ -92,7 +99,7 @@ namespace EcommercePetsFoodBackend.Controllers
 
         [HttpPost("order-create")]
         [Authorize(Roles ="user")]
-        public async Task<ActionResult> OrderCreate([FromBody] long price)
+        public async Task<ActionResult> OrderCreate( long price)
         {
             try
             {

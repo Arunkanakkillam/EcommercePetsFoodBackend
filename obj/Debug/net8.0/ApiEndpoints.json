@@ -198,7 +198,7 @@
       {
         "Name": "price",
         "Type": "System.Int64",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
