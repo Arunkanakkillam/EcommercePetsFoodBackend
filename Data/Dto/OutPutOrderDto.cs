@@ -8,6 +8,8 @@
         public decimal Price { get; set; }
         public decimal Total { get; set; }
         public int UserId {  get; set; }
+        public int orderId { get; set; }
+        public DateTime CreatedDate { get; set; }   
         public string image { get; set; }
     }
 }

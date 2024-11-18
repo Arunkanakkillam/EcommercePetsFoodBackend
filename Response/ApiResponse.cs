@@ -6,7 +6,7 @@
         public string StatusMessage { get; set; }
         public string Error {  get; set; }
         public T Data { get; set; }
-        public ApiResponse(int statuscode, string statusmessage,string error = null,T data=default(T))
+        public ApiResponse(int statuscode, string statusmessage, T data = default(T),string error = null)
         {
             StatusCode = statuscode;
             StatusMessage = statusmessage;

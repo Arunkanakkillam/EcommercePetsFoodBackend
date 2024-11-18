@@ -1,4 +1,5 @@
 ﻿using EcommercePetsFoodBackend.Data.Dto;
+using EcommercePetsFoodBackend.Data.Models.Customer;
 using EcommercePetsFoodBackend.Data.Models.Orders;
 using EcommercePetsFoodBackend.Db_Context;
 using Microsoft.EntityFrameworkCore;
@@ -78,6 +79,11 @@ namespace EcommercePetsFoodBackend.Services.OrderServices
                 });
                 await _context.OrderItems.AddRangeAsync(orderItemList);
                 await _context.SaveChangesAsync();
+                foreach (var item in cartItems.cart.Items)
+                {
+                    _context.CartItems.Remove(item);
+                }
+                await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
                 return true;
             }
@@ -139,8 +145,11 @@ namespace EcommercePetsFoodBackend.Services.OrderServices
                     Quantity = oi.Quantity,
                     Price = oi.Price,
                     Total = oi.TotalPrice,
+                    orderId = oi.OrderItemId,
+                    CreatedDate = oi.OrderDate,
                     UserId = oi.OrderId,
-                    image = oi.Product.Image
+                    image = $"{_configuration["HostUrl:Images"]}/Products/{oi.Product.Image}"
+                   
                 }))
                     .ToList();
                 return orderList;
@@ -173,7 +182,10 @@ namespace EcommercePetsFoodBackend.Services.OrderServices
                     Price = orderItem.Price,
                     Total = orderItem.TotalPrice,
                     UserId = customer.Id,
-                    image = orderItem.Product.Image
+                    orderId=orderItem.OrderItemId,
+                    CreatedDate=orderItem.OrderDate,
+                    image = $"{_configuration["HostUrl:Images"]}/Products/{orderItem.Product.Image}"
+                    
 
                 }))).ToList();
                 return orderList;   

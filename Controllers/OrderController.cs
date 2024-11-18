@@ -51,9 +51,9 @@ namespace EcommercePetsFoodBackend.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-        [HttpGet("userorderuser")]
+        [HttpGet("userorderuser/{id}")]
         [Authorize(Roles = "user")]
-        public async Task<IActionResult> UserOrders()
+        public async Task<IActionResult> UserOrders(int id)
         {
             try
             {
@@ -62,10 +62,14 @@ namespace EcommercePetsFoodBackend.Controllers
                     return BadRequest();
                 }
                 var User_id = Convert.ToInt32(HttpContext.Items["Id"]);
+                if (User_id == id) 
+                {
+                    var order_list = await _orderService.CustomersOrders(User_id);
 
-                var order_list = await _orderService.CustomersOrders(User_id);
-
-                return Ok(order_list);
+                    return Ok(order_list);
+                }
+                return BadRequest();
+              
             }
             catch (Exception ex)
             {

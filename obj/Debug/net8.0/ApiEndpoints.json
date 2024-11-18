@@ -264,11 +264,17 @@
   {
     "ContainingType": "EcommercePetsFoodBackend.Controllers.OrderController",
     "Method": "UserOrders",
-    "RelativePath": "api/Order/userorderuser",
+    "RelativePath": "api/Order/userorderuser/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
