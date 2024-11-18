@@ -86,13 +86,12 @@ namespace EcommercePetsFoodBackend.Controllers
             }
         }
 
-        [HttpGet("GetProductsByCategoryId/{id}")]
-        [Authorize(Roles = "admin,user")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductByCategoryId(int id)
+        [HttpGet("GetProductsByCategoryId/{id}/{pageno}/{pagesize}")]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProductByCategoryId(int id, int pageno, int pagesize)
         {
             try
             {
-                var data=await _Product.GetProductByCategoryId(id);
+                var data=await _Product.GetProductByCategoryId(id, pageno, pagesize);
                 return Ok(data);
             }
             catch (Exception ex)

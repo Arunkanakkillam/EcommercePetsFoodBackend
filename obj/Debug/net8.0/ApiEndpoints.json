@@ -398,7 +398,7 @@
   {
     "ContainingType": "EcommercePetsFoodBackend.Controllers.ProductController",
     "Method": "GetProductByCategoryId",
-    "RelativePath": "api/Product/GetProductsByCategoryId/{id}",
+    "RelativePath": "api/Product/GetProductsByCategoryId/{id}/{pageno}/{pagesize}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -407,11 +407,21 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "pageno",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pagesize",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[EcommercePetsFoodBackend.Data.Models.Products.Product, EcommercePetsFoodBackend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EcommercePetsFoodBackend.Data.Dto.ProductDto, EcommercePetsFoodBackend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

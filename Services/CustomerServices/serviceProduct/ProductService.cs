@@ -99,16 +99,40 @@ namespace EcommercePetsFoodBackend.Services.CustomerServices.serviceProduct
             }
 
         }
-        public async Task<IEnumerable<Product>> GetProductByCategoryId(int id)
+        public async Task<IEnumerable<ProductDto>> GetProductByCategoryId(int id,int pageno,int pagesize)
         {
             try
             {
-                var data = await _context.Products.FromSqlRaw("select * from Products where ProductCategoryId=@Id", new SqlParameter("@Id", id)).ToListAsync();
+                if(pageno <= 0)
+                {
+                    pageno = 1;
+                }
+                if (pagesize <= 0) 
+                {
+                    pagesize = 2;
+                }
+                int skip = (pageno - 1) * pagesize;
+
+                var data = await _context.Products.FromSqlRaw("select * from Products where ProductCategoryId=@Id", new SqlParameter("@Id", id))
+                    .Skip(skip)
+                    .Take(pagesize)
+                    .ToListAsync();
                 if(data != null)
                 {
-                    return data;
+                    var product = data.Select(p => new ProductDto
+                    {
+                        ProductId = p.ProductId,
+                        Image = $"{_configuration["HostUrl:Images"]}/Products/{p.Image}",
+                        Price = p.Price,
+                        ProductCategoryId = p.ProductCategoryId,
+                        ProductDescription = p.ProductDescription,
+                        ProductName = p.ProductName,
+                        Quandity = p.Quandity
+                    });
+
+                    return product;
                 }
-                return null;
+                return Enumerable.Empty<ProductDto>();
 
             }
             catch (Exception ex)
